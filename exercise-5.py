@@ -2,8 +2,6 @@ import math;
 import random;
 import statistics as statistic;
 
-# 
-
 import matplotlib.pyplot as plt;
 import numpy as np;
 import pandas as pd;
@@ -11,27 +9,21 @@ import seaborn as sns;
 
 from typing import List;
 
-# 
+# import _function;
+# _function.has_key();
+# _function.set_array_number_decimal();
+# _function.set_array_number();
+# _function.set_array_random();
+# _function.set_array_sort();
+# _function.set_database_filter();
+# _function.set_divider();
+# _function.set_format();
+# _function.set_join();
+# _function.set_range();
 
 is_divider = 100;
 
-# 
-
 def has_key(input = {}, key = ''): return key in input;
-
-def set_array_number(input = {}):
-    proper = {
-        'length' : input.get('length', 15),
-        'min' : input.get('min', 1),
-        'max' : input.get('max', 15),
-    };
-    result = [];
-    proper['min'] = (proper['max'] + proper['length']) if proper['min'] >= proper['max'] else proper['min'];
-    proper['max'] = (proper['min'] + proper['length']) if proper['max'] <= proper['min'] else proper['max'];
-    for _ in range(proper['length']):
-        result.append(random.randint(proper['min'], proper['max']));
-    result = sorted(result);
-    return result;
 
 def set_array_number_decimal(input = {}):
     proper = {
@@ -50,9 +42,19 @@ def set_array_number_decimal(input = {}):
     is_result = sorted(is_result);
     return is_result;
 
-def set_join(input = [], between = ', '): return (between.join(np.array(input).astype(str)));
-
-def set_format(input = []): return f"r${input:.2f}".replace('.', ',');
+def set_array_number(input = {}):
+    proper = {
+        'length' : input.get('length', 15),
+        'min' : input.get('min', 1),
+        'max' : input.get('max', 15),
+    };
+    result = [];
+    proper['min'] = (proper['max'] + proper['length']) if proper['min'] >= proper['max'] else proper['min'];
+    proper['max'] = (proper['min'] + proper['length']) if proper['max'] <= proper['min'] else proper['max'];
+    for _ in range(proper['length']):
+        result.append(random.randint(proper['min'], proper['max']));
+    result = sorted(result);
+    return result;
 
 def set_array_random(array: List[str], number: int) -> List[str]:
     return random.choices(array, k=number);
@@ -63,22 +65,22 @@ def set_array_sort(input = []):
     is_array.sort();
     return is_array;
 
-def set_divider():
-    global is_divider;
-    print("-" * is_divider);
-
 def set_database_filter(input):
     if isinstance(input, pd.DataFrame):
         if not input.empty:
             print(input);
             set_divider();
 
+def set_divider():
+    global is_divider;
+    print("-" * is_divider);
+
+def set_format(input = []): return f"r${input:.2f}".replace('.', ',');
+
+def set_join(input = [], between = ', '): return (between.join(np.array(input).astype(str)));
+
 def set_range(start = 0, end = 0):
     return range(start, start + end);
-
-# 
-
-set_divider();
 
 # 
 
@@ -222,6 +224,3 @@ is_database['type'] = set_array_random([ 'Apartment', 'House' ], is_length);
 is_database['value'] = set_array_number({ **is_everyone, 'min' : 1000, 'max' : 2000 });
 print(is_database);
 set_divider();
-
-
-
