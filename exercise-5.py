@@ -1,13 +1,21 @@
 import math;
+import random;
+import statistics as statistic;
+
+# 
+
 import matplotlib.pyplot as plt;
 import numpy as np;
 import pandas as pd;
-import random;
 import seaborn as sns;
-import statistics as statistic;
+
 from typing import List;
 
-divider_length = 100;
+# 
+
+is_divider = 100;
+
+# 
 
 def has_key(input = {}, key = ''): return key in input;
 
@@ -49,16 +57,28 @@ def set_format(input = []): return f"r${input:.2f}".replace('.', ',');
 def set_array_random(array: List[str], number: int) -> List[str]:
     return random.choices(array, k=number);
 
+def set_array_sort(input = []):
+    is_array = set(input);
+    is_array = list(is_array);
+    is_array.sort();
+    return is_array;
+
+def set_divider():
+    global is_divider;
+    print("-" * is_divider);
+
 def set_database_filter(input):
-    global divider_length;
     if isinstance(input, pd.DataFrame):
         if not input.empty:
             print(input);
-            print("-" * divider_length);
-
+            set_divider();
 
 def set_range(start = 0, end = 0):
     return range(start, start + end);
+
+# 
+
+set_divider();
 
 # 
 
@@ -66,19 +86,18 @@ is_value = 15;
 if (is_value > 10): print("Esta é uma venda de alto valor.");
 elif (is_value > 5): print("Esta é uma venda de valor médio.");
 else: print("Esta é uma venda de baixo valor.");
-print("\n" + "=" * divider_length + "\n");
+set_divider();
 
 # 
 
 is_value = "Café";
 if (is_value == "Café"): print("É uma venda de Café.");
-if (is_value != "Leite"): print("Não é um venda de Leite.");
-print("\n" + "=" * divider_length + "\n");
+if (is_value != "Leite"): print("Não é uma venda de Leite.");
+set_divider();
 
 # 
 
 is_product = [ 'Café', 'Açúcar', 'Leite', 'Pão', 'Manteiga', 'Café', 'Leite', 'Pão', 'Açúcar', 'Café' ];
-# is_product = list(set(is_product));
 is_product.sort();
 is_database = pd.DataFrame({ 'product' : is_product });
 is_everyone = { 'length' : len(is_database['product']) };
@@ -86,12 +105,13 @@ is_database['commission'] = set_array_number_decimal({ **is_everyone, 'min' : 0.
 is_database['stock'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 100 });
 is_database['value'] = set_array_number_decimal ({ **is_everyone, 'min' : 6, 'max' : 12 });
 print(is_database);
-print("\n" + "=" * divider_length + "\n");
+set_divider();
 
 # 
 
+is_name = [ 'Rex', 'Luna', 'Fido', 'Nina', 'Thor', 'Mimi' ];
 is_database = pd.DataFrame({
-    'name' : [ 'Floco', 'Rex', 'Mia', 'Thor', 'Bolinha', 'Luna' ],
+    'name' : set_array_sort(is_name),
 });
 is_length = len(is_database['name']);
 is_everyone = { 'length' : is_length };
@@ -100,7 +120,9 @@ is_database['specie'] = set_array_random([ 'Cachorro', 'Gato' ], is_length);
 is_database['vaccinated'] = set_array_random([ True, False ], is_length);
 is_database['weight'] = set_array_number({ **is_everyone, 'min' : 4, 'max' : 30 });
 print(is_database);
-print("-" * divider_length);
+set_divider();
+
+# 
 
 set_database_filter(is_database[
     (is_database['age'] > 7)
@@ -117,16 +139,19 @@ set_database_filter(is_database[
 
 # 
 
+is_product = [ 'Arroz', 'Feijão', 'Óleo', 'Sal', 'Macarrão', 'Café' ];
 is_database = pd.DataFrame({
-    'product' : [ 'Arroz', 'Feijão', 'Óleo', 'Sal', 'Macarrão', 'Café' ],
+    'product' : set_array_sort(is_product),
 });
 is_length = len(is_database['product']);
 is_everyone = { 'length' : is_length };
-is_database['stock'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 100 });
 is_database['category'] = set_array_random([ 'Grãos', 'Mercearia' ], is_length);
+is_database['stock'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 100 });
 is_database['price'] = set_array_number_decimal({ **is_everyone, 'min' : 5, 'max' : 25 });
 print(is_database);
-print("-" * divider_length);
+set_divider();
+
+# 
 
 set_database_filter(is_database[
     (is_database['stock'] < 10)
@@ -140,25 +165,63 @@ set_database_filter(is_database[
 
 # 
 
+is_name = [ 'Ana', 'Bruno', 'Carla', 'Daniel', 'Elisa', 'Fábio' ];
 is_database = pd.DataFrame({
-    'name' : [ 'Ana', 'Bruno', 'Carla', 'Daniel', 'Elisa', 'Fábio' ],
+    'name' : set_array_sort(is_name),
 });
 is_length = len(is_database['name']);
 is_everyone = { 'length' : is_length };
-is_database['absence'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 10 });
-is_database['note'] = set_array_number_decimal({ **is_everyone, 'min' : 1, 'max' : 10 });
+is_database['absence'] = set_array_number({ **is_everyone, 'min' : 0, 'max' : 10 });
+is_database['note'] = set_array_number_decimal({ **is_everyone, 'min' : 0, 'max' : 10 });
 is_database['register'] = set_range(100, is_length);
 print(is_database);
-print("-" * divider_length);
+set_divider();
+
+# 
 
 set_database_filter(is_database[
     (is_database['note'] > 7)
 ]);
-
 set_database_filter(is_database[
     (is_database['absence'] > 5)
 ]);
-
 set_database_filter(is_database[
-    (is_database['absence'] == 0) & (is_database['note'] > 9)
+    (is_database['absence'] == 1) & (is_database['note'] > 9)
 ]);
+
+# 
+
+is_seller = [ 'Rafael', 'Bia', 'Carlos', 'Rafael', 'Bia', 'Carlos' ];
+is_seller.sort();
+is_database = pd.DataFrame({ 
+    'seller': is_seller,
+}); 
+is_length = len(is_database['seller']);
+is_everyone = { 'length' : is_length };
+is_region = [ 'South', 'Southeast', 'Northeast', 'Southeast', 'South', 'Southeast' ];
+is_database['region'] = set_array_random(set_array_sort(is_region), is_length);
+is_database['type'] = set_array_random([ 'online', 'in-person' ], is_length);
+is_database['value'] = set_array_number({ **is_everyone, 'min' : 1000, 'max' : 2000 });
+print(is_database);
+set_divider();
+
+# 
+
+is_seller = [ 'Rafael', 'Bia', 'Carlos', 'Rafael', 'Bia', 'Carlos' ];
+is_seller.sort();
+is_database = pd.DataFrame({ 
+    'seller': is_seller,
+}); 
+is_length = len(is_database['seller']);
+is_everyone = { 'length' : is_length };
+is_region = [ 'Center', 'Beach', 'Center', 'North', 'Beach', 'South' ];
+is_database['area'] = set_array_number({ **is_everyone, 'min' : 50, 'max' : 200 });
+is_database['region'] = set_array_random(set_array_sort(is_region), is_length);
+is_database['room'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 5 });
+is_database['type'] = set_array_random([ 'Apartment', 'House' ], is_length);
+is_database['value'] = set_array_number({ **is_everyone, 'min' : 1000, 'max' : 2000 });
+print(is_database);
+set_divider();
+
+
+
