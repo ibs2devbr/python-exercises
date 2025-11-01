@@ -9,7 +9,7 @@ from typing import List;
 
 divider_length = 100;
 
-def has_key (input = {}, key = ''): return key in input;
+def has_key(input = {}, key = ''): return key in input;
 
 def set_array_number(input = {}):
     proper = {
@@ -82,8 +82,8 @@ is_product = [ 'Café', 'Açúcar', 'Leite', 'Pão', 'Manteiga', 'Café', 'Leite
 is_product.sort();
 is_database = pd.DataFrame({ 'product' : is_product });
 is_everyone = { 'length' : len(is_database['product']) };
-is_database['commission'] = set_array_number_decimal ({ **is_everyone, 'min' : 0.5, 'max' : 1.5 });
-is_database['stock'] = set_array_number ({ **is_everyone, 'min' : 1, 'max' : 100 });
+is_database['commission'] = set_array_number_decimal({ **is_everyone, 'min' : 0.5, 'max' : 1.5 });
+is_database['stock'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 100 });
 is_database['value'] = set_array_number_decimal ({ **is_everyone, 'min' : 6, 'max' : 12 });
 print(is_database);
 print("\n" + "=" * divider_length + "\n");
@@ -95,10 +95,10 @@ is_database = pd.DataFrame({
 });
 is_length = len(is_database['name']);
 is_everyone = { 'length' : is_length };
-is_database['age'] = set_array_number ({ **is_everyone, 'min' : 1, 'max' : 12 });
+is_database['age'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 12 });
 is_database['specie'] = set_array_random([ 'Cachorro', 'Gato' ], is_length);
 is_database['vaccinated'] = set_array_random([ True, False ], is_length);
-is_database['weight'] = set_array_number ({ **is_everyone, 'min' : 4, 'max' : 30 });
+is_database['weight'] = set_array_number({ **is_everyone, 'min' : 4, 'max' : 30 });
 print(is_database);
 print("-" * divider_length);
 
@@ -122,9 +122,9 @@ is_database = pd.DataFrame({
 });
 is_length = len(is_database['product']);
 is_everyone = { 'length' : is_length };
-is_database['stock'] = set_array_number ({ **is_everyone, 'min' : 1, 'max' : 100 });
+is_database['stock'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 100 });
 is_database['category'] = set_array_random([ 'Grãos', 'Mercearia' ], is_length);
-is_database['price'] = set_array_number_decimal ({ **is_everyone, 'min' : 5, 'max' : 25 });
+is_database['price'] = set_array_number_decimal({ **is_everyone, 'min' : 5, 'max' : 25 });
 print(is_database);
 print("-" * divider_length);
 
@@ -145,9 +145,9 @@ is_database = pd.DataFrame({
 });
 is_length = len(is_database['name']);
 is_everyone = { 'length' : is_length };
+is_database['absence'] = set_array_number({ **is_everyone, 'min' : 1, 'max' : 10 });
+is_database['note'] = set_array_number_decimal({ **is_everyone, 'min' : 1, 'max' : 10 });
 is_database['register'] = set_range(100, is_length);
-is_database['note'] = set_array_number_decimal ({ **is_everyone, 'min' : 1, 'max' : 10 });
-is_database['absence'] = set_array_number ({ **is_everyone, 'min' : 1, 'max' : 10 });
 print(is_database);
 print("-" * divider_length);
 
@@ -162,5 +162,3 @@ set_database_filter(is_database[
 set_database_filter(is_database[
     (is_database['absence'] == 0) & (is_database['note'] > 9)
 ]);
-
-
