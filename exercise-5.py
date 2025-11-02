@@ -209,6 +209,24 @@ set_divider();
 
 # 
 
+set_database_filter(is_database[
+    (is_database['seller'] == 'Bia')
+]);
+
+set_database_filter(is_database[
+    (is_database['value'] > 1400)
+]);
+
+set_database_filter(is_database[
+    (is_database['value'] == 'South') & (is_database['region'] == 'Southeast')
+]);
+
+set_database_filter(is_database[
+    (is_database['type'] != 'online')
+]);
+
+# 
+
 is_seller = [ 'Rafael', 'Bia', 'Carlos', 'Rafael', 'Bia', 'Carlos' ];
 is_seller.sort();
 is_database = pd.DataFrame({ 
