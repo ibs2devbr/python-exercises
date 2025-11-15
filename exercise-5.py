@@ -1,25 +1,14 @@
 import math;
 import random;
 import statistics as statistic;
-
+# 
 import matplotlib.pyplot as plt;
 import numpy as np;
 import pandas as pd;
 import seaborn as sns;
-
+# 
 from typing import List;
-
-# import _function;
-# _function.has_key();
-# _function.set_array_number_decimal();
-# _function.set_array_number();
-# _function.set_array_random();
-# _function.set_array_sort();
-# _function.set_database_filter();
-# _function.set_divider();
-# _function.set_format();
-# _function.set_join();
-# _function.set_range();
+# 
 
 is_divider = 100;
 
